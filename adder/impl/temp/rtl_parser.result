@@ -1,0 +1,10 @@
+[
+ {
+  "InstFile" : "D:/t-fpga projects/simple-esp32-fpga-digital-adder/adder/src/adder.v",
+  "InstLine" : 1,
+  "InstName" : "led",
+  "ModuleFile" : "D:/t-fpga projects/simple-esp32-fpga-digital-adder/adder/src/adder.v",
+  "ModuleLine" : 1,
+  "ModuleName" : "led"
+ }
+]

@@ -1,0 +1,72 @@
+//
+//Written by GowinSynthesis
+//Tool Version "V1.9.10 (64-bit)"
+//Thu Jul 18 10:43:29 2024
+
+//Source file index table:
+//file0 "\D:/t-fpga\ projects/simple-esp32-fpga-digital-adder/adder/src/adder.v"
+`timescale 100 ps/100 ps
+module led (
+  a_in,
+  b_in,
+  c_in,
+  sum,
+  carry
+)
+;
+input a_in;
+input b_in;
+input c_in;
+output sum;
+output carry;
+wire a_in_d;
+wire b_in_d;
+wire c_in_d;
+wire sum_d;
+wire carry_d;
+wire VCC;
+wire GND;
+  IBUF a_in_ibuf (
+    .O(a_in_d),
+    .I(a_in) 
+);
+  IBUF b_in_ibuf (
+    .O(b_in_d),
+    .I(b_in) 
+);
+  IBUF c_in_ibuf (
+    .O(c_in_d),
+    .I(c_in) 
+);
+  OBUF sum_obuf (
+    .O(sum),
+    .I(sum_d) 
+);
+  OBUF carry_obuf (
+    .O(carry),
+    .I(carry_d) 
+);
+  LUT3 sum_d_s (
+    .F(sum_d),
+    .I0(a_in_d),
+    .I1(b_in_d),
+    .I2(c_in_d) 
+);
+defparam sum_d_s.INIT=8'h96;
+  LUT3 carry_d_s (
+    .F(carry_d),
+    .I0(a_in_d),
+    .I1(b_in_d),
+    .I2(c_in_d) 
+);
+defparam carry_d_s.INIT=8'hE8;
+  VCC VCC_cZ (
+    .V(VCC)
+);
+  GND GND_cZ (
+    .G(GND)
+);
+  GSR GSR (
+    .GSRI(VCC) 
+);
+endmodule /* led */
