@@ -45,15 +45,38 @@ int serial_int;
 String serial_str;
 void led_task(void *param);
 
+// Timing variables for LED 1
+unsigned long previousMillis1 = 0;
+const long interval1 = 1000; // LED 1 blinks every 1 second
+
+// Timing variables for LED 2
+unsigned long previousMillis2 = 0;
+const long interval2 = 500;  // LED 2 blinks every 0.5 seconds
+
+// Timing variables for LED 3
+unsigned long previousMillis3 = 0;
+const long interval3 = 2000; // LED 3 blinks every 2 seconds\
+
+// LED states
+int ledState1 = LOW;
+int ledState2 = LOW;
+int ledState3 = LOW;
+
+unsigned long previousMillis = 0; // Store the last time the output was updated
+const long interval = 10000; // 10 seconds interval
+
+int state = 0; // Initialize state variable
+
 void setup()
 {
   pinMode(a_in, OUTPUT);
   pinMode(b_in, OUTPUT);
   pinMode(c_in, OUTPUT);
-
+  
   
     Serial.begin(115200);
     Serial.println("Hello T-FPGA-CORE");
+    Serial.println("Initialising adder testbench...");
     xTaskCreatePinnedToCore(led_task, "led_task", 1024, NULL, 1, NULL, 1);
 
     bool result = PMU.begin(Wire, AXP2101_SLAVE_ADDRESS, PIN_IIC_SDA, PIN_IIC_SCL);
@@ -63,7 +86,7 @@ void setup()
         while (1)
             delay(50);
     }
-
+  
     PMU.setDC4Voltage(1200);   // Here is the FPGA core voltage. Careful review of the manual is required before modification.
     PMU.setALDO1Voltage(3300); // BANK0 area voltage
     PMU.setALDO2Voltage(3300); // BANK1 area voltage
@@ -78,44 +101,118 @@ void setup()
 
 void loop()
 {
-    if (Serial.available())
-    {
-      serial_int = Serial.read();
-      serial_str = String(serial_int);
-      if (serial_str == "a_in=0")
-      {
-        digitalWrite(a_in,false);
-      }
-      if (serial_str == "a_in=1")
-      {
-        digitalWrite(a_in,true);
-      }
-      if (serial_str == "b_in=0")
-      {
-        digitalWrite(b_in,false);
-      }
-      if (serial_str == "b_in=1")
-      {
-        digitalWrite(b_in,true);
-      }
-      if (serial_str == "c_in=0")
-      {
-        digitalWrite(c_in,false);
-      }
-      if (serial_str == "c_in=1")
-      {
-        digitalWrite(c_in,true);
-      }
+
+//unsigned long currentMillis = millis(); // Get the current time
+
+//  // Check if 10 seconds have passed
+//  if (currentMillis - previousMillis >= interval) {
+//    previousMillis = currentMillis; // Save the current time
+//
+//    // Update the outputs based on the current state
+//    digitalWrite(a_in, bitRead(state, 0)); // Set output1 to the least significant bit of state
+//    digitalWrite(b_in, bitRead(state, 1)); // Set output2 to the second bit of state
+//    digitalWrite(c_in, bitRead(state, 2)); // Set output3 to the most significant bit of state
+//
+//    state++; 
+//    switch (state)
+//    {
+//      case 0:
+//      digitalWrite(a_in,LOW); 
+//      digitalWrite(b_in,LOW); 
+//      digitalWrite(c_in,LOW);
+//      break;
+//      case 1:
+//      digitalWrite(a_in,HIGH); 
+//      digitalWrite(b_in,LOW); 
+//      digitalWrite(c_in,LOW);
+//      break;
+//      case 2:
+//      digitalWrite(a_in,LOW); 
+//      digitalWrite(b_in,HIGH); 
+//      digitalWrite(c_in,LOW);
+//      break;
+//      case 3:
+//      digitalWrite(a_in,HIGH); 
+//      digitalWrite(b_in,HIGH); 
+//      digitalWrite(c_in,LOW);
+//      break;
+//      case 4:
+//      digitalWrite(a_in,LOW); 
+//      digitalWrite(b_in,LOW); 
+//      digitalWrite(c_in,HIGH);
+//      break;
+//      case 5:
+//      digitalWrite(a_in,HIGH); 
+//      digitalWrite(b_in,LOW); 
+//      digitalWrite(c_in,HIGH);
+//      break;
+//      case 6:
+//      digitalWrite(a_in,LOW); 
+//      digitalWrite(b_in,HIGH); 
+//      digitalWrite(c_in,HIGH);
+//      break;
+//      case 7:
+//      digitalWrite(a_in,HIGH); 
+//      digitalWrite(b_in,HIGH); 
+//      digitalWrite(c_in,HIGH);
+//      break;
+//      }
+//    if (state > 7) {
+//      state = 0;
+//    }
+//  }
+  unsigned long currentMillis = millis(); // Get the current time
+
+  // LED 1 control
+  if (currentMillis - previousMillis1 >= interval1) {
+    previousMillis1 = currentMillis; // Save the current time
+    // Toggle LED 1
+    ledState1 = !ledState1; // Toggle the state
+    if (ledState1) {
+      digitalWrite(a_in, HIGH); // Turn LED 1 ON
+    } else {
+      digitalWrite(a_in, LOW);  // Turn LED 1 OFF
     }
+  }
+
+  // LED 2 control
+  if (currentMillis - previousMillis2 >= interval2) {
+    previousMillis2 = currentMillis; // Save the current time
+    // Toggle LED 2
+    ledState2 = !ledState2; // Toggle the state
+    if (ledState2) {
+      digitalWrite(b_in, HIGH); // Turn LED 2 ON
+    } else {
+      digitalWrite(b_in, LOW);  // Turn LED 2 OFF
+    }
+  }
+
+  // LED 3 control
+  if (currentMillis - previousMillis3 >= interval3) {
+    previousMillis3 = currentMillis; // Save the current time
+    // Toggle LED 3
+    ledState3 = !ledState3; // Toggle the state
+    if (ledState3) {
+      digitalWrite(c_in, HIGH); // Turn LED 3 ON
+    } else {
+      digitalWrite(c_in, LOW);  // Turn LED 3 OFF
+    }
+  }
 }
 
 void led_task(void *param)
 {
     pinMode(sum, INPUT);
     pinMode(carry, INPUT);
+    pinMode(PIN_LED, OUTPUT);
     while (true) {
+        digitalWrite(PIN_LED, 1);
         sum_t = digitalRead(sum);
         carry_t= digitalRead(carry);
-        delay(5);
+        delay(100);
+        Serial.println("sum = " + String(sum_t));
+        Serial.println("carry = " + String(carry_t));
+        digitalWrite(PIN_LED, 0);
+        delay(100);
     }
 }
