@@ -102,65 +102,6 @@ void setup()
 void loop()
 {
 
-//unsigned long currentMillis = millis(); // Get the current time
-
-//  // Check if 10 seconds have passed
-//  if (currentMillis - previousMillis >= interval) {
-//    previousMillis = currentMillis; // Save the current time
-//
-//    // Update the outputs based on the current state
-//    digitalWrite(a_in, bitRead(state, 0)); // Set output1 to the least significant bit of state
-//    digitalWrite(b_in, bitRead(state, 1)); // Set output2 to the second bit of state
-//    digitalWrite(c_in, bitRead(state, 2)); // Set output3 to the most significant bit of state
-//
-//    state++; 
-//    switch (state)
-//    {
-//      case 0:
-//      digitalWrite(a_in,LOW); 
-//      digitalWrite(b_in,LOW); 
-//      digitalWrite(c_in,LOW);
-//      break;
-//      case 1:
-//      digitalWrite(a_in,HIGH); 
-//      digitalWrite(b_in,LOW); 
-//      digitalWrite(c_in,LOW);
-//      break;
-//      case 2:
-//      digitalWrite(a_in,LOW); 
-//      digitalWrite(b_in,HIGH); 
-//      digitalWrite(c_in,LOW);
-//      break;
-//      case 3:
-//      digitalWrite(a_in,HIGH); 
-//      digitalWrite(b_in,HIGH); 
-//      digitalWrite(c_in,LOW);
-//      break;
-//      case 4:
-//      digitalWrite(a_in,LOW); 
-//      digitalWrite(b_in,LOW); 
-//      digitalWrite(c_in,HIGH);
-//      break;
-//      case 5:
-//      digitalWrite(a_in,HIGH); 
-//      digitalWrite(b_in,LOW); 
-//      digitalWrite(c_in,HIGH);
-//      break;
-//      case 6:
-//      digitalWrite(a_in,LOW); 
-//      digitalWrite(b_in,HIGH); 
-//      digitalWrite(c_in,HIGH);
-//      break;
-//      case 7:
-//      digitalWrite(a_in,HIGH); 
-//      digitalWrite(b_in,HIGH); 
-//      digitalWrite(c_in,HIGH);
-//      break;
-//      }
-//    if (state > 7) {
-//      state = 0;
-//    }
-//  }
   unsigned long currentMillis = millis(); // Get the current time
 
   // LED 1 control
