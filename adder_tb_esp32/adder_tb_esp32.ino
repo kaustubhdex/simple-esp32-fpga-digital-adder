@@ -109,6 +109,7 @@ void loop()
     previousMillis1 = currentMillis; // Save the current time
     // Toggle LED 1
     ledState1 = !ledState1; // Toggle the state
+    //Serial.println("ls 1 = " + String(ledState1));
     if (ledState1) {
       digitalWrite(a_in, HIGH); // Turn LED 1 ON
     } else {
@@ -121,6 +122,7 @@ void loop()
     previousMillis2 = currentMillis; // Save the current time
     // Toggle LED 2
     ledState2 = !ledState2; // Toggle the state
+    //Serial.println("ls 2 = " + String(ledState2));
     if (ledState2) {
       digitalWrite(b_in, HIGH); // Turn LED 2 ON
     } else {
@@ -133,12 +135,14 @@ void loop()
     previousMillis3 = currentMillis; // Save the current time
     // Toggle LED 3
     ledState3 = !ledState3; // Toggle the state
+    //Serial.println("ls 3 = " + String(ledState3));
     if (ledState3) {
       digitalWrite(c_in, HIGH); // Turn LED 3 ON
     } else {
       digitalWrite(c_in, LOW);  // Turn LED 3 OFF
     }
   }
+//  
 }
 
 void led_task(void *param)
@@ -154,6 +158,10 @@ void led_task(void *param)
         Serial.println("sum = " + String(sum_t));
         Serial.println("carry = " + String(carry_t));
         digitalWrite(PIN_LED, 0);
+        delay(100);
+        Serial.println("ls 1 = " + String(ledState1));
+        Serial.println("ls 2 = " + String(ledState2));
+        Serial.println("ls 3 = " + String(ledState3));
         delay(100);
     }
 }

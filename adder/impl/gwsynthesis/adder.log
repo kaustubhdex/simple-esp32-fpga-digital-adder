@@ -2,6 +2,12 @@ GowinSynthesis start
 Running parser ...
 Analyzing Verilog file 'D:\t-fpga projects\simple-esp32-fpga-digital-adder\adder\src\adder.v'
 Compiling module 'led'("D:\t-fpga projects\simple-esp32-fpga-digital-adder\adder\src\adder.v":1)
+WARN  (EX3779) : 'a_in' should be on the sensitivity list. Signal missing is added and assuming complete sensitivity list specified. RTL design and post-synthesis netlist simulations may differ as a result("D:\t-fpga projects\simple-esp32-fpga-digital-adder\adder\src\adder.v":9)
+WARN  (EX3779) : 'c_in' should be on the sensitivity list. Signal missing is added and assuming complete sensitivity list specified. RTL design and post-synthesis netlist simulations may differ as a result("D:\t-fpga projects\simple-esp32-fpga-digital-adder\adder\src\adder.v":9)
+WARN  (EX3779) : 'a_in' should be on the sensitivity list. Signal missing is added and assuming complete sensitivity list specified. RTL design and post-synthesis netlist simulations may differ as a result("D:\t-fpga projects\simple-esp32-fpga-digital-adder\adder\src\adder.v":10)
+WARN  (EX3779) : 'c_in' should be on the sensitivity list. Signal missing is added and assuming complete sensitivity list specified. RTL design and post-synthesis netlist simulations may differ as a result("D:\t-fpga projects\simple-esp32-fpga-digital-adder\adder\src\adder.v":10)
+WARN  (EX3779) : 'c_in' should be on the sensitivity list. Signal missing is added and assuming complete sensitivity list specified. RTL design and post-synthesis netlist simulations may differ as a result("D:\t-fpga projects\simple-esp32-fpga-digital-adder\adder\src\adder.v":10)
+WARN  (EX3779) : 'a_in' should be on the sensitivity list. Signal missing is added and assuming complete sensitivity list specified. RTL design and post-synthesis netlist simulations may differ as a result("D:\t-fpga projects\simple-esp32-fpga-digital-adder\adder\src\adder.v":10)
 NOTE  (EX0101) : Current top module is "led"
 [5%] Running netlist conversion ...
 Running device independent optimization ...
