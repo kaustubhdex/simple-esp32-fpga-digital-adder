@@ -1,3 +1,4 @@
+
 /*
     adder logic implemented in fpga, digital read/write done by esp32
 
@@ -11,7 +12,6 @@
 #include "XPowersLib.h" //https://github.com/lewisxhe/XPowersLib
 
 XPowersAXP2101 PMU;
-
 #pragma once
 
 #define PIN_BTN      0
@@ -72,8 +72,8 @@ void setup()
   pinMode(a_in, OUTPUT);
   pinMode(b_in, OUTPUT);
   pinMode(c_in, OUTPUT);
-  
-  
+  pinMode(sum, INPUT);
+  pinMode(carry, INPUT);
     Serial.begin(115200);
     Serial.println("Hello T-FPGA-CORE");
     Serial.println("Initialising adder testbench...");
@@ -128,6 +128,15 @@ void loop()
     } else {
       digitalWrite(b_in, LOW);  // Turn LED 2 OFF
     }
+    sum_t = digitalRead(sum);
+        carry_t= digitalRead(carry);
+        delay(100);
+        delay(100);
+        Serial.println("ls 1 = " + String(ledState1));
+        Serial.println("ls 2 = " + String(ledState2));
+        Serial.println("ls 3 = " + String(ledState3));
+        Serial.println("sum = " + String(sum_t));
+        Serial.println("carry = " + String(carry_t));
   }
 
   // LED 3 control
@@ -147,21 +156,14 @@ void loop()
 
 void led_task(void *param)
 {
-    pinMode(sum, INPUT);
-    pinMode(carry, INPUT);
+    
     pinMode(PIN_LED, OUTPUT);
+    
     while (true) {
         digitalWrite(PIN_LED, 1);
-        sum_t = digitalRead(sum);
-        carry_t= digitalRead(carry);
         delay(100);
-        Serial.println("sum = " + String(sum_t));
-        Serial.println("carry = " + String(carry_t));
         digitalWrite(PIN_LED, 0);
-        delay(100);
-        Serial.println("ls 1 = " + String(ledState1));
-        Serial.println("ls 2 = " + String(ledState2));
-        Serial.println("ls 3 = " + String(ledState3));
+        
         delay(100);
     }
 }
