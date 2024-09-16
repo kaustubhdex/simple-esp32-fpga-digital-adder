@@ -50,3 +50,9 @@
 
 ### Simulating Circuit Auto mode
 - Each of the a_in, b_in and c_in are toggled with accurate timing manipulation using millis() (millis is a lifesaver :)
+
+
+### Tips
+
+- Use a Logic analyser to verify the FPGA logic before readingit onto the ESP32. consider voltage levels and change pinouts if needed.
+- Use a TTL logic level converter if possible for reliability, preferebly CMOS for high speed applications. 
