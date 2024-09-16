@@ -48,13 +48,5 @@
 
 ---
 
-### Simulating Circuit Manually
-
-Write at ESP32 USB serial:  
-
-- `"a_in=0"`  
-- `"a_in=1"`  
-- `"b_in=0"`  
-- `"b_in=1"`  
-- `"c_in=0"`  
-- `"c_in=1"`
+### Simulating Circuit Auto mode
+- `Each of the a_in, b_in and c_in are toggled with accurate timing manipulation using millis() (millis is a lifesaver :)`
