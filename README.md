@@ -49,4 +49,4 @@
 ---
 
 ### Simulating Circuit Auto mode
-- `Each of the a_in, b_in and c_in are toggled with accurate timing manipulation using millis() (millis is a lifesaver :)`
+- Each of the a_in, b_in and c_in are toggled with accurate timing manipulation using millis() (millis is a lifesaver :)
