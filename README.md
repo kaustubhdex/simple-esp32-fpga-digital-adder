@@ -1,32 +1,60 @@
-# simple-esp32-fpga-digital-adder
+# Simple ESP32-FPGA Digital Adder
 
-Hardware Used: Lilygo T-FPGA Development board and T-FPGA Sheild.
+**Hardware Used:**  
+- Lilygo T-FPGA Development board  
+- T-FPGA Shield
 
-Software Used for FPGA prototyping: GOWIN V1.9.10
+**Software Used for FPGA prototyping:**  
+- GOWIN V1.9.10
 
-Software Used ESP32 programming: Arduino IDE V1.8.19
+**Software Used for ESP32 programming:**  
+- Arduino IDE V1.8.19
 
+---
 
-adder logic implemented in fpga, digital read/write done by esp32
+### Adder Logic Implemented in FPGA
 
-adder implemented on fpga
-adder ckt:
-input: a_in, b_in, c_in - P5: 1,3,5 (FPGA_IOR2A, FPGA_IOR11A, FPGA_IOR15A)
-output: sum, carry - P5: 2, 4 (FPGA_IOR2B, FPGA_IOR11B)
+**Adder Circuit:**  
+- **Inputs:**  
+  - `a_in`, `b_in`, `c_in`  
+  - Pin assignments (P5):  
+    - `a_in`: P5:1 (FPGA_IOR2A)  
+    - `b_in`: P5:3 (FPGA_IOR11A)  
+    - `c_in`: P5:5 (FPGA_IOR15A)  
 
-adder tb on esp32
-tb ckt:
-input: sum, carry - P6: 2,4 (GPIO 21,17)
-output: a_in, b_in, c_in - P6: 1,3,5 (GPIO 18, 16, 12)
+- **Outputs:**  
+  - `sum`, `carry`  
+  - Pin assignments (P5):  
+    - `sum`: P5:2 (FPGA_IOR2B)  
+    - `carry`: P5:4 (FPGA_IOR11B)  
 
+---
 
-Simulating ckt manually:
+### Testbench on ESP32
 
-write at esp32 usb_serial, 
+**Testbench Circuit:**  
+- **Inputs:**  
+  - `sum`, `carry`  
+  - Pin assignments (P6):  
+    - `sum`: P6:2 (GPIO 21)  
+    - `carry`: P6:4 (GPIO 17)  
 
-"a_in=0"
-"a_in=1"
-"b_in=0"
-"b_in=1"
-"c_in=0"
-"c_in=1"
+- **Outputs:**  
+  - `a_in`, `b_in`, `c_in`  
+  - Pin assignments (P6):  
+    - `a_in`: P6:1 (GPIO 18)  
+    - `b_in`: P6:3 (GPIO 16)  
+    - `c_in`: P6:5 (GPIO 12)  
+
+---
+
+### Simulating Circuit Manually
+
+Write at ESP32 USB serial:  
+
+- `"a_in=0"`  
+- `"a_in=1"`  
+- `"b_in=0"`  
+- `"b_in=1"`  
+- `"c_in=0"`  
+- `"c_in=1"`
