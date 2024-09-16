@@ -5,6 +5,12 @@
     adder implemented on fpga adder ckt: input: a_in, b_in, c_in - P5: 1,3,5 (FPGA_IOR2A, FPGA_IOR11A, FPGA_IOR15A) output: sum, carry - P5: 2, 4 (FPGA_IOR2B, FPGA_IOR11B)
 
     adder tb on esp32 tb ckt: input: sum, carry - P6: 2,4 (GPIO 21,17) output: a_in, b_in, c_in - P6: 1,3,5 (GPIO 18, 16, 12) 
+
+    AXP2101 is used for power mgmt for FPGA and ESP32. 
+
+    One blinking LED given on second core for recognising active status.
+
+    Simulated using accurate timing adjustments via millis()
  */
 
 #include "Arduino.h"

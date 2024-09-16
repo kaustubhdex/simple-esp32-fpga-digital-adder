@@ -1,5 +1,13 @@
 # simple-esp32-fpga-digital-adder
- adder logic implemented in fpga, digital read/write done by esp32
+
+Hardware Used: Lilygo T-FPGA Development board and T-FPGA Sheild.
+
+Software Used for FPGA prototyping: GOWIN V1.9.10
+
+Software Used ESP32 programming: Arduino IDE V1.8.19
+
+
+adder logic implemented in fpga, digital read/write done by esp32
 
 adder implemented on fpga
 adder ckt:
