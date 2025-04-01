@@ -135,14 +135,14 @@ void loop()
       digitalWrite(b_in, LOW);  // Turn LED 2 OFF
     }
     sum_t = digitalRead(sum);
-        carry_t= digitalRead(carry);
-        delay(100);
-        delay(100);
-        Serial.println("ls 1 = " + String(ledState1));
-        Serial.println("ls 2 = " + String(ledState2));
-        Serial.println("ls 3 = " + String(ledState3));
-        Serial.println("sum = " + String(sum_t));
-        Serial.println("carry = " + String(carry_t));
+    carry_t= digitalRead(carry);
+    delay(100);
+    delay(100);
+    Serial.println("ls 1 = " + String(ledState1));
+    Serial.println("ls 2 = " + String(ledState2));
+    Serial.println("ls 3 = " + String(ledState3));
+    Serial.println("sum = " + String(sum_t));
+    Serial.println("carry = " + String(carry_t));
   }
 
   // LED 3 control
